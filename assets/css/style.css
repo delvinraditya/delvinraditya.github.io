@@ -1,0 +1,242 @@
+/* Reset and Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: #282828;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+header nav ul li {
+    margin: 0 20px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #ff6b6b;
+}
+
+/* Home Section */
+#home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff0000, #0000ff); 
+    color: #fff;
+    text-align: center;
+    padding: 0 20px;
+}
+
+#home h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#home p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    max-width: 600px;
+}
+
+
+/* About Section */
+#about {
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #ff0000, #0000ff); /* Gradien dari merah ke biru */
+    text-align: center;
+    margin-top: 0; /* Menghilangkan margin atas */
+    min-height: 100vh; /* Pastikan bagian about memenuhi layar */
+    color: #fff; /* Ubah warna teks agar kontras dengan background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#about img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sedikit lebih gelap untuk kontras yang lebih jelas */
+}
+
+#about h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #fff; /* Warna putih untuk teks judul */
+}
+
+#about p {
+    font-size: 1.1rem;
+    color: #e0e0e0; /* Warna abu terang untuk teks */
+    margin-bottom: 20px;
+}
+
+.cv-button {
+    display: inline-block;
+    background-color: #ff6b6b;
+    color: #fff;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.cv-button:hover {
+    background-color: #ff4b4b;
+}
+
+/* Projects Section */
+#projects {
+    background: linear-gradient(135deg, #ff0000, #0000ff); /* Gradien dari merah ke biru */
+    padding: 100px 20px;
+    text-align: center;
+    color: #fff; /* Ubah warna teks agar kontras dengan background */
+}
+
+#projects h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #fff; /* Judul tetap berwarna putih */
+}
+
+
+.project-item {
+    display: inline-block;
+    width: 300px;
+    margin: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Shadow sedikit lebih gelap */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Shadow lebih kuat saat hover */
+}
+
+.project-item img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.project-item p {
+    font-size: 1rem;
+    color: #333; /* Warna teks lebih gelap untuk kontras dengan background putih */
+}
+.drive-button {
+    display: inline-block;
+    background-color: #ff6b6b;
+    color: #fff;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.drive-button {
+    background-color: #ff4b4b;
+}
+
+
+
+/* Contact Section */
+#contact {
+    background: linear-gradient(135deg, #ff0000, #0000ff); /* Gradien dari merah ke biru */
+    color: #fff;
+    padding: 100px 20px;
+    text-align: center;
+    min-height: 100vh; /* Pastikan bagian contact setinggi layar */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#contact h2 {
+    font-size: 2.5rem; /* Ukuran judul lebih besar */
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 90px; /* Jarak antar tombol diperbesar */
+}
+
+.contact-buttons a img {
+    width: 70px; /* Ukuran tombol lebih besar */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.contact-buttons a img:hover {
+    transform: scale(1.3); /* Sedikit lebih besar saat hover */
+    filter: brightness(1.2); /* Mencerahkan ikon saat di-hover */
+}
+
+/* Footer */
+footer {
+    background-color: #1b1b1b;
+    color: #bbb;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    #home h1 {
+        font-size: 2.5rem;
+    }
+
+    .project-item {
+        width: 90%;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+}
