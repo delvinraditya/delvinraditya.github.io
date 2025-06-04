@@ -31,6 +31,20 @@
     <footer>
         <p>&copy; 2024 Delvin Raditya Salfa. All Rights Reserved.</p>
     </footer>
-    <script src="assets/js/script.js"></script>
+    <div id="navbar-placeholder"></div>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('navbar-placeholder').innerHTML = html;
+
+        // Navbar toggle JS harus di-run ulang setelah load
+        const toggleBtn = document.getElementById('menu-toggle');
+        const navList = document.getElementById('nav-list');
+        toggleBtn.addEventListener('click', () => {
+          navList.classList.toggle('show');
+        });
+      });
+  </script>
 </body>
 </html>

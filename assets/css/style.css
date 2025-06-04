@@ -12,37 +12,92 @@ body {
     line-height: 1.6;
 }
 
-/* Header */
+/* === HEADER DAN NAV === */
 header {
-    background-color: #282828;
-    padding: 20px;
-    position: fixed;
+  background-color: #282828;
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Logo kiri */
+.logo {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Menu kanan */
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #ff6b6b;
+}
+
+/* Toggle button (hamburger) */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
     width: 100%;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+    background-color: #282828;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    padding: 10px 0;
+  }
 
-header nav ul {
+  nav ul.show {
     display: flex;
-    justify-content: center;
-    list-style: none;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+    text-align: center;
+  }
 }
 
-header nav ul li {
-    margin: 0 20px;
-}
 
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s ease;
-}
-
-header nav ul li a:hover {
-    color: #ff6b6b;
-}
 
 /* Home Section */
 #home {
@@ -140,7 +195,7 @@ header nav ul li a:hover {
     width: 300px;
     margin: 20px;
     background-color: #fff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Shadow sedikit lebih gelap */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
