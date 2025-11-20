@@ -5,135 +5,215 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f4f9;
     color: #333;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* === HEADER DAN NAV === */
 header {
-  background-color: #282828;
-  padding: 20px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(40, 40, 40, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    padding: 10px 0;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
 }
 
 nav {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
 }
 
 /* Logo kiri */
 .logo {
-  color: #fff;
-  font-size: 24px;
-  font-weight: bold;
+    color: #fff;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 /* Menu kanan */
 nav ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
 }
 
 nav ul li {
-  margin: 0 20px;
+    position: relative;
 }
 
 nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s ease;
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: block;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ff0000, #0000ff);
+    transition: width 0.3s ease;
 }
 
 nav ul li a:hover {
-  color: #ff6b6b;
+    color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.1);
+}
+
+nav ul li a:hover::after {
+    width: 80%;
 }
 
 /* Toggle button (hamburger) */
 .menu-toggle {
-  display: none;
-  font-size: 26px;
-  color: #fff;
-  cursor: pointer;
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  nav ul {
     display: none;
-    flex-direction: column;
-    width: 100%;
-    background-color: #282828;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    padding: 10px 0;
-  }
-
-  nav ul.show {
-    display: flex;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-    text-align: center;
-  }
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    transition: transform 0.3s ease;
 }
 
+.menu-toggle:hover {
+    transform: rotate(90deg);
+}
 
-
-/* Home Section */
+/* === HOME SECTION === */
 #home {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #ff0000, #0000ff); 
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ff0000, #0000ff);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
     color: #fff;
     text-align: center;
-    padding: 0 20px;
+    padding: 80px 30px 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 #home h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 8vw, 4rem);
     margin-bottom: 20px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    animation: fadeInUp 1s ease;
+    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
 }
 
 #home p {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    max-width: 600px;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    margin-bottom: 15px;
+    max-width: 700px;
+    animation: fadeInUp 1.2s ease;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
 }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-/* About Section */
+/* Scroll indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+
+.scroll-indicator::before {
+    content: '↓';
+    font-size: 30px;
+    color: white;
+    opacity: 0.7;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* === ABOUT SECTION === */
 #about {
-    padding: 100px 20px;
-    background: linear-gradient(135deg, #ff0000, #0000ff); /* Gradien dari merah ke biru */
+    padding: 100px 30px;
+    background: linear-gradient(135deg, #ff0000, #0000ff);
     text-align: center;
-    margin-top: 0; /* Menghilangkan margin atas */
-    min-height: 100vh; /* Pastikan bagian about memenuhi layar */
-    color: #fff; /* Ubah warna teks agar kontras dengan background */
+    min-height: 100vh;
+    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -141,164 +221,352 @@ nav ul li a:hover {
 }
 
 #about img {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sedikit lebih gelap untuk kontras yang lebih jelas */
+    margin-bottom: 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: fadeIn 1s ease;
+}
+
+#about img:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 #about h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    color: #fff; /* Warna putih untuk teks judul */
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin-bottom: 20px;
+    color: #fff;
+    animation: fadeIn 1.2s ease;
 }
 
 #about p {
-    font-size: 1.1rem;
-    color: #e0e0e0; /* Warna abu terang untuk teks */
-    margin-bottom: 20px;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    color: #e0e0e0;
+    margin-bottom: 25px;
+    max-width: 700px;
+    line-height: 1.8;
+    animation: fadeIn 1.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .cv-button {
     display: inline-block;
     background-color: #ff6b6b;
     color: #fff;
-    padding: 12px 30px;
+    padding: 14px 40px;
     text-decoration: none;
     border-radius: 50px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+    animation: fadeIn 1.6s ease;
 }
 
 .cv-button:hover {
     background-color: #ff4b4b;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
 }
 
-/* Projects Section */
+.cv-button:active {
+    transform: translateY(-1px);
+}
+
+/* === PROJECTS SECTION === */
 #projects {
-    background: linear-gradient(135deg, #ff0000, #0000ff); /* Gradien dari merah ke biru */
-    padding: 100px 20px;
+    background: linear-gradient(135deg, #ff0000, #0000ff);
+    padding: 100px 30px;
     text-align: center;
-    color: #fff; /* Ubah warna teks agar kontras dengan background */
+    color: #fff;
+    min-height: 100vh;
 }
 
 #projects h2 {
-    font-size: 2rem;
-    margin-bottom: 40px;
-    color: #fff; /* Judul tetap berwarna putih */
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin-bottom: 60px;
+    color: #fff;
 }
 
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
 .project-item {
-    display: inline-block;
-    width: 300px;
-    margin: 20px;
     background-color: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Shadow sedikit lebih gelap */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #ff0000, #0000ff);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.project-item:hover::before {
+    transform: scaleX(1);
 }
 
 .project-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Shadow lebih kuat saat hover */
+    transform: translateY(-15px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
 }
 
 .project-item img {
     width: 100%;
-    border-radius: 8px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: transform 0.4s ease;
+}
+
+.project-item:hover img {
+    transform: scale(1.05);
+}
+
+.project-item h3 {
+    font-size: 1.3rem;
+    color: #333;
     margin-bottom: 10px;
 }
 
 .project-item p {
     font-size: 1rem;
-    color: #333; /* Warna teks lebih gelap untuk kontras dengan background putih */
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
 }
+
 .drive-button {
     display: inline-block;
     background-color: #ff6b6b;
     color: #fff;
-    padding: 12px 30px;
+    padding: 10px 25px;
     text-decoration: none;
     border-radius: 50px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 10px;
 }
 
-.drive-button {
+.drive-button:hover {
     background-color: #ff4b4b;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
 }
 
-
-
-/* Contact Section */
+/* === CONTACT SECTION === */
 #contact {
-    background: linear-gradient(135deg, #ff0000, #0000ff); /* Gradien dari merah ke biru */
+    background: linear-gradient(135deg, #ff0000, #0000ff);
     color: #fff;
-    padding: 100px 20px;
+    padding: 100px 30px;
     text-align: center;
-    min-height: 100vh; /* Pastikan bagian contact setinggi layar */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 #contact h2 {
-    font-size: 2.5rem; /* Ukuran judul lebih besar */
-    margin-bottom: 40px;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 50px;
     color: #fff;
 }
 
 .contact-buttons {
-  display: flex; 
-  justify-content: center;
-  gap: 40px;
-  margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
 }
+
 .contact-icon {
-  background: white;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.contact-icon:hover::before {
+    left: 100%;
 }
 
 .contact-icon:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-12px) rotate(3deg);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .contact-icon img {
-  width: 64px;
-  height: 64px;
+    width: 70px;
+    height: 70px;
+    transition: transform 0.3s ease;
 }
-/* Footer */
+
+.contact-icon:hover img {
+    transform: scale(1.1);
+}
+
+/* === FOOTER === */
 footer {
     background-color: #1b1b1b;
     color: #bbb;
-    padding: 20px 0;
+    padding: 30px 20px;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 footer p {
     margin: 0;
 }
 
-/* Responsive Styles */
+/* === RESPONSIVE STYLES === */
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        padding: 0 20px;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(40, 40, 40, 0.98);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 20px 0;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        gap: 0;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 0;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+
+    nav ul li a {
+        padding: 15px 20px;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    #home {
+        padding: 100px 20px 50px;
+    }
+
+    #about img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .contact-buttons {
+        gap: 20px;
+    }
+
+    .contact-icon {
+        padding: 25px;
+    }
+
+    .contact-icon img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 22px;
+    }
+
     #home h1 {
-        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+
+    .cv-button,
+    .drive-button {
+        padding: 12px 30px;
+        font-size: 1rem;
     }
 
     .project-item {
-        width: 90%;
+        padding: 20px;
     }
 
-    header nav ul {
-        flex-direction: column;
-        padding: 20px 0;
+    .contact-icon {
+        padding: 20px;
+        min-width: 120px;
     }
+}
+
+/* Loading Animation */
+.fade-in {
+    animation: fadeIn 0.6s ease;
+}
+
+/* Accessibility Improvements */
+*:focus {
+    outline: 2px solid #ff6b6b;
+    outline-offset: 2px;
+}
+
+button, a {
+    min-height: 44px;
+    min-width: 44px;
 }
