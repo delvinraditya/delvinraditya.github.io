@@ -1,3 +1,2 @@
-//Ver. 1.01
-Update Navigation Bar
-Update Padding di Menu Proyek
+My 1st Web Portofolio
+Since 1 Nov 2024
